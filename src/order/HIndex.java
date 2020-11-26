@@ -38,21 +38,16 @@ public class HIndex {
 
     public static int solution(int[] citations) {
         int answer = 0;
+        boolean isEnd = false;
         Arrays.sort(citations);
         for (int i = 0; i < citations.length; i++) {
             for (int j = 0; j < citations.length; j++) {
-                int minJ = 0;
-                System.out.println(String.format("n번째%s, 체크: %s, 체크값: %s", i + 1, j + 1, citations[j]));
-                if (i + 1 >= citations[j]
-                        && i + 1 >= j + 1) {
-                    minJ = j;
-                }
+                if (i + 1 <= citations[j] && i + 1 <= citations.length - j) {
+                    answer = i + 1;
 
-                if (minJ + 1 <= i + 1
-                        && i + 1 <= citations[j]
-                        && i + 1 <= citations.length - j) {
-                    System.out.println("############## insert");
-                    answer = i + 1 > answer ? i + 1 : answer;
+                    if (i + 1 == citations.length - j) {
+                        break;
+                    }
                 }
             }
         }
