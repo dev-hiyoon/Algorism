@@ -44,7 +44,6 @@ public class HIndex {
             for (int j = 0; j < citations.length; j++) {
                 if (i + 1 <= citations[j] && i + 1 <= citations.length - j) {
                     answer = i + 1;
-
                     if (i + 1 == citations.length - j) {
                         break;
                     }
