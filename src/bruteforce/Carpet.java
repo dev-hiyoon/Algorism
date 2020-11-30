@@ -36,7 +36,7 @@ public class Carpet {
         int sum = brown + yellow;
         int sqrt = (int) Math.sqrt(sum);
         for (int i = sqrt; i < brown; i++) {
-            if (sum % i == 0 && (i >= sum / i)) {
+            if (sum % i == 0 && (i >= sum / i) && sum - (i * 2 + ((sum / i) - 2) * 2) == yellow) {
                 max = max < i ? i : max;
                 break;
             }
