@@ -1,8 +1,7 @@
 package bruteforce;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
+import java.util.HashSet;
 
 public class FindPrimeNumbers {
 
@@ -31,40 +30,54 @@ public class FindPrimeNumbers {
 
         11과 011은 같은 숫자로 취급합니다.
          */
-        String numbers = "17";
+        String numbers = "011";
         int reuslt = solution(numbers);
         System.out.println("########## result: " + reuslt);
     }
 
     private static int solution(String numbers) {
         int answer = 0;
-        List<Integer[]> results = new ArrayList();
+        HashSet<Integer> hashSet = new HashSet<>();
         int[] arrNumbers = numbers.chars().map(x -> x - '0').toArray();
-        for (int i = 1; i < numbers.length(); i++) {
-            results.addAll(permutation(0, arrNumbers, new Integer[i], new boolean[i], results));
+        for (int i = 0; i < numbers.length(); i++) {
+            permutation(0, arrNumbers, new Integer[i + 1], new boolean[numbers.length()], hashSet);
         }
 
-        for (Integer[] result : results) {
-            System.out.println(Arrays.toString(result));
+        for (Integer value : hashSet) {
+            boolean isPermutation = true;
+            if (value < 2) {
+                isPermutation = false;
+            } else {
+                for (int i = 0; i < value; i++) {
+                    if (i >= 2 && value % i == 0) {
+                        isPermutation = false;
+                    }
+                }
+            }
+
+            if (isPermutation) {
+                answer++;
+            }
         }
 
         return answer;
     }
 
-    private static List<Integer[]> permutation(int currentDepth, int[] numbers, Integer[] temp, boolean[] visited, List<Integer[]> results) {
+    private static void permutation(int currentDepth, int[] numbers, Integer[] temp, boolean[] visited, HashSet<Integer> hashSet) {
         if (currentDepth == temp.length) {
-            results.add(temp);
-            return results;
+            int value = Integer.valueOf(Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", ""));
+            System.out.println("######## " + value);
+            hashSet.add(value);
+            return;
         }
 
-        for (int i = 0; i < numbers.length - 1; i++) {
-            if (!visited[i]) {
+        for (int i = 0; i < numbers.length; i++) {
+//            if (!visited[i]) {
                 temp[currentDepth] = numbers[i];
                 visited[i] = true;
-                results.addAll(permutation(++currentDepth, numbers, temp, visited, results));
-            }
+                permutation(currentDepth + 1, numbers, temp, visited, hashSet);
+                visited[i] = false;
+//            }
         }
-
-        return results;
     }
 }
