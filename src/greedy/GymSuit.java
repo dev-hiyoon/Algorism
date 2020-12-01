@@ -34,9 +34,9 @@ public class GymSuit {
         예제 #2
         3번 학생이 2번 학생이나 4번 학생에게 체육복을 빌려주면 학생 4명이 체육수업을 들을 수 있습니다.
          */
-        int n = 5;
-        int[] lost = {2, 4};
-        int[] reserve = {3};
+        int n = 3;
+        int[] lost = {1, 3};
+        int[] reserve = {2};
         int result = solution(n, lost, reserve);
         System.out.println(result);
     }
@@ -49,7 +49,11 @@ public class GymSuit {
         }
 
         for (int i = 0; i < reserve.length; i++) {
-            result[reserve[i] - 1] = 3;
+            if (result[reserve[i] - 1] >= 0) {
+                result[reserve[i] - 1] = 3;
+            } else {
+                result[reserve[i] - 1] = 2;
+            }
         }
 
         for (int i = 0; i < n; i++) {
@@ -63,6 +67,7 @@ public class GymSuit {
         }
 
         for (int i = 0; i < result.length; i++) {
+            System.out.println("idx: " + i + ", result: " + result[i]);
             if (result[i] >= 0) {
                 answer++;
             }
