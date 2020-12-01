@@ -1,5 +1,8 @@
 package greedy;
 
+import java.util.Arrays;
+import java.util.HashSet;
+
 public class MakeBigNumber {
 
     /**
@@ -26,14 +29,38 @@ public class MakeBigNumber {
          *
          */
 
-        String number = "";
-        int k = 0;
+        String number = "4177252841";
+        int k = 4;
         String result = solution(number, k);
         System.out.println(result);
     }
 
     public static String solution(String number, int k) {
         String answer = "";
-        return answer;
+        int[] arrNumbers = number.chars().map(x -> x - '0').toArray();
+        int[] temp = new int[number.length() - k];
+        boolean[] visited = new boolean[number.length()];
+        HashSet<Integer> results = new HashSet<>();
+        getMax(0, 0, temp, arrNumbers, visited, results);
+
+        int max = 0;
+        for (Integer value : results) {
+            max = max < value ? value : max;
+        }
+        
+        return String.valueOf(max);
+    }
+
+    public static void getMax(int depth, int start, int[] temp, int[] arrNumbers, boolean[] visited, HashSet<Integer> results) {
+        if (depth == temp.length) {
+            System.out.println("###### " + Integer.valueOf(Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "")));
+            results.add(Integer.valueOf(Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "")));
+            return;
+        }
+
+        for (int i = start; i < arrNumbers.length; i++) {
+                temp[depth] = arrNumbers[i];
+                getMax(depth + 1, i + 1, temp, arrNumbers, visited, results);
+        }
     }
 }
