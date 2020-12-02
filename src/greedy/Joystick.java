@@ -24,20 +24,48 @@ public class Joystick {
          * 제한 사항
          * name은 알파벳 대문자로만 이루어져 있습니다.
          * name의 길이는 1 이상 20 이하입니다.
+         *
          * 입출력 예
-         * name	return
+         * name	    return
          * JEROEN	56
-         * JAN	23
-         * 출처
+         * JAN	    23
          */
 
-        String name = "";
+        String name = "JAN";
         int result = solution(name);
         System.out.println(result);
     }
 
     public static int solution(String name) {
         int answer = 0;
-        return answer;
+        int asc = getCnt(String.valueOf(name.charAt(0)));
+        int desc = asc;
+        for (int i = 1; i < name.length(); i++) {
+            asc++;
+            asc += getCnt(String.valueOf(name.charAt(i)));
+        }
+
+        for (int i = name.length() - 1; i >= 1; i--) {
+            desc++;
+            desc += getCnt(String.valueOf(name.charAt(i)));
+        }
+
+        return asc > desc ? desc : asc;
+    }
+
+    private static int getCnt(String param) {
+        String alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        int result = 0;
+        if (!param.equals("A")) {
+            for (int i = 0; i < alphabet.length(); i++) {
+                if (param.equals(String.valueOf(alphabet.charAt(i)))) {
+                    result = i;
+                    break;
+                }
+            }
+        }
+
+        result = result < 26 - result ? result : 26 - result;
+        return result;
     }
 }
