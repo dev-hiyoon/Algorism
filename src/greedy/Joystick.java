@@ -31,26 +31,42 @@ public class Joystick {
          * JAN	    23
          */
 
-        String name = "JAN";
+        String name = "ABAAB";
         int result = solution(name);
         System.out.println(result);
     }
 
     public static int solution(String name) {
         int answer = 0;
-        int asc = getCnt(String.valueOf(name.charAt(0)));
-        int desc = asc;
+        int idx = 0;
+        int continueA = 0;
+        int asc = getCnt(String.valueOf(name.charAt(0))) + 1;
+
         for (int i = 1; i < name.length(); i++) {
-            asc++;
-            asc += getCnt(String.valueOf(name.charAt(i)));
+            String c = String.valueOf(name.charAt(i));
+            if (c.equals("A")) {
+                idx = i;
+                asc--;
+                break;
+            } else {
+                asc += getCnt(c) + 1;
+            }
         }
 
-        for (int i = name.length() - 1; i >= 1; i--) {
-            desc++;
-            desc += getCnt(String.valueOf(name.charAt(i)));
+        if (idx > 0) {
+            asc += idx - 1;
+            for (int i = name.length() - 1; i >= idx; i--) {
+                String c = String.valueOf(name.charAt(i));
+                if (c.equals("A")) {
+                    continueA++;
+                } else {
+                    asc += continueA + getCnt(c) + 1;
+                    continueA = 0;
+                }
+            }
         }
 
-        return asc > desc ? desc : asc;
+        return asc;
     }
 
     private static int getCnt(String param) {
