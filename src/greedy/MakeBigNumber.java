@@ -29,39 +29,63 @@ public class MakeBigNumber {
          *
          */
 
-        String number = "87654321";
+        String number = "1231234";
         int k = 3;
         String result = solution(number, k);
         System.out.println(result);
     }
 
     public static String solution(String number, int k) {
+
         String answer = "";
         int[] arrNumbers = number.chars().map(x -> x - '0').toArray();
         int[] temp = new int[number.length() - k];
-        HashSet<Integer> results = new HashSet<>();
-        getMax(0, 0, temp, arrNumbers, results);
-
-        int max = 0;
-        for (Integer value : results) {
-            max = max < value ? value : max;
-        }
-        
-        return String.valueOf(max);
-    }
-
-    public static void getMax(int depth, int start, int[] temp, int[] arrNumbers, HashSet<Integer> results) {
-        if (depth == temp.length) {
-            String value = Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "");
-            if (value != null && !value.equals("")) {
-                results.add(Integer.valueOf(Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "")));
+        int cnt = 0;
+        int idx = 0;
+        while (cnt < number.length() - k) {
+            int max = 0;
+            int lastIdx = number.length() - (temp.length - cnt - 1);
+            for (int i = idx; i < lastIdx; i++) {
+                if (max < arrNumbers[i]) {
+                    max = arrNumbers[i];
+                    idx = i;
+                }
             }
-            return;
+
+            temp[cnt] = arrNumbers[idx];
+            idx++;
+            cnt++;
         }
 
-        for (int i = start; i < arrNumbers.length; i++) {
-                temp[depth] = arrNumbers[i];
-                getMax(depth + 1, i + 1, temp, arrNumbers, results);
-        }
+        return Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "");
+
+
+//        String answer = "";
+//        int[] arrNumbers = number.chars().map(x -> x - '0').toArray();
+//        int[] temp = new int[number.length() - k];
+//        HashSet<Integer> results = new HashSet<>();
+//        getMax(0, 0, temp, arrNumbers, results);
+//
+//        int max = 0;
+//        for (Integer value : results) {
+//            max = max < value ? value : max;
+//        }
+//
+//        return String.valueOf(max);
     }
+
+//    public static void getMax(int depth, int start, int[] temp, int[] arrNumbers, HashSet<Integer> results) {
+//        if (depth == temp.length) {
+//            String value = Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "");
+//            if (value != null && !value.equals("")) {
+//                results.add(Integer.valueOf(Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "")));
+//            }
+//            return;
+//        }
+//
+//        for (int i = start; i < arrNumbers.length; i++) {
+//                temp[depth] = arrNumbers[i];
+//                getMax(depth + 1, i + 1, temp, arrNumbers, results);
+//        }
+//    }
 }
