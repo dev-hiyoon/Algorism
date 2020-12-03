@@ -1,5 +1,7 @@
 package greedy;
 
+import java.util.Arrays;
+
 public class LifeBoat {
 
     public static void main(String[] args) {
@@ -35,18 +37,43 @@ public class LifeBoat {
 
     public static int solution(int[] people, int limit) {
         int answer = 0;
+        Arrays.sort(people);
+        int sum = 0;
+        int maxIdx = people.length - 1;
+        int minIdx = 0;
+        boolean[] visited = new boolean[people.length];
+        while(true) {
+            for (int i = maxIdx; i >= 0; i--) {
+                if (!visited[i]) {
+                    maxIdx= i;
+                    visited[i] = true;
+                    sum += people[i];
+                    break;
+                }
+            }
 
+            if (sum == 0) {
+                break;
+            }
 
+            for (int i = minIdx; i < maxIdx; i++) {
+                if (!visited[i]) {
+                    if (sum + people[i] > limit) {
+                        break;
+                    }
 
+                    sum += people[i];
+                    visited[i] = true;
+                    minIdx = i + 1;
+                    break;
+                }
+            }
 
-
-
-
-
-
-
-
-
+            if (sum > 0) {
+                sum = 0;
+                answer++;
+            }
+        }
 
         return answer;
     }
