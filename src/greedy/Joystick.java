@@ -41,7 +41,7 @@ public class Joystick {
         int idx = 0;
         int continueA = 0;
         int asc = getCnt(String.valueOf(name.charAt(0))) + 1;
-        int desc = asc;
+        int desc = desc = Integer.MAX_VALUE;
 
         for (int i = 1; i < name.length(); i++) {
             String c = String.valueOf(name.charAt(i));
@@ -65,13 +65,9 @@ public class Joystick {
                     continueA = 0;
                 }
             }
-        } else {
-            desc = Integer.MAX_VALUE;
         }
 
-        asc--;
-        desc--;
-        return asc > desc ? desc : asc;
+        return Math.min(--asc, --desc);
     }
 
     private static int getCnt(String param) {
