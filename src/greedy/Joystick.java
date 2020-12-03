@@ -31,7 +31,7 @@ public class Joystick {
          * JAN	    23
          */
 
-        String name = "ABAAB";
+        String name = "JAN";
         int result = solution(name);
         System.out.println(result);
     }
@@ -41,32 +41,37 @@ public class Joystick {
         int idx = 0;
         int continueA = 0;
         int asc = getCnt(String.valueOf(name.charAt(0))) + 1;
+        int desc = asc;
 
         for (int i = 1; i < name.length(); i++) {
             String c = String.valueOf(name.charAt(i));
-            if (c.equals("A")) {
+            asc++;
+            if (c.equals("A") && idx == 0) {
                 idx = i;
-                asc--;
-                break;
+                desc = asc - 2;
             } else {
-                asc += getCnt(c) + 1;
+                asc += getCnt(c);
             }
         }
 
         if (idx > 0) {
-            asc += idx - 1;
+            desc += (idx); // 맨마지막 위치로 이동
             for (int i = name.length() - 1; i >= idx; i--) {
                 String c = String.valueOf(name.charAt(i));
                 if (c.equals("A")) {
                     continueA++;
                 } else {
-                    asc += continueA + getCnt(c) + 1;
+                    desc += continueA + getCnt(c) + 1;
                     continueA = 0;
                 }
             }
+        } else {
+            desc = Integer.MAX_VALUE;
         }
 
-        return asc;
+        asc--;
+        desc--;
+        return asc > desc ? desc : asc;
     }
 
     private static int getCnt(String param) {
