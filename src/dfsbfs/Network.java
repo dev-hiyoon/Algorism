@@ -57,7 +57,7 @@ public class Network {
 
         HashSet<Integer> result = new HashSet<>();
         for (int i = 0; i < parents.length; i++) {
-            System.out.println(String.format("connected. parent: %s", parents[i]));
+                System.out.println(String.format("connected. parent: %s", parents[i]));
             result.add(parents[i]);
         }
 

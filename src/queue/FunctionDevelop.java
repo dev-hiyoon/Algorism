@@ -15,7 +15,7 @@ public class FunctionDevelop {
 
         int[] progresses = new int[]{95, 90, 99, 99, 80, 99};
         int[] speeds = new int[]{1, 1, 1, 1, 1, 1};
-        int[] results = solution(progresses, speeds); // {4, 3, 1, 1, 0}
+        int[] results = solution2(progresses, speeds); // {4, 3, 1, 1, 0}
         for (int result : results) {
             System.out.println(result);
         }
@@ -62,5 +62,43 @@ public class FunctionDevelop {
 
         return answer;
     }
+
+    public static int[] solution2(int[] progresses, int[] speeds) {
+        int[] answer = {};
+        Queue<Integer> queue = new LinkedList();
+        for (int progress: progresses) {
+            queue.add(progress);
+        }
+
+        Queue<Integer> resultQueue = new LinkedList<>();
+
+        while (queue.size() > 0) {
+            boolean isCompleted = false;
+            int queueSize = queue.size();
+            int startIdx = progresses.length - queue.size();
+            for (int i = startIdx; i < progresses.length; i++) {
+                progresses[i] += speeds[i];
+                if (i == startIdx && progresses[i] >= 100) {
+                    isCompleted = true;
+                    queue.poll();
+                } else if (isCompleted && progresses[i] >= 100) {
+                    queue.poll();
+                } else {
+                    isCompleted = false;
+                }
+            }
+
+            if (queueSize != queue.size()) {
+                resultQueue.add(queueSize - queue.size());
+            }
+        }
+
+        answer = new int[resultQueue.size()];
+        while (resultQueue.size() > 0) {
+            answer[answer.length - resultQueue.size()] = (int) resultQueue.poll();
+        }
+        return answer;
+    }
+
 
 }
