@@ -49,4 +49,19 @@ public class Carpet {
         return new int[]{max, sum / max};
     }
 
+    public static int[] solution2(int brown, int yellow) {
+        int[] answer = {};
+        int sum = brown + yellow;
+        for (int i = 2; i < sum; i++) {
+            int x = i;
+            int y = (sum - 2 * x - yellow) / 2 + 2;
+            if (x > y && sum == x * y) {
+                answer = new int [] {x, y};
+                break;
+            }
+        }
+
+        return answer;
+    }
+
 }
