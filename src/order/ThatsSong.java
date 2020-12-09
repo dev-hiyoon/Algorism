@@ -1,7 +1,10 @@
 package order;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Date;
 
 public class ThatsSong {
 
@@ -86,4 +89,63 @@ public class ThatsSong {
 
         return answer.equals("") ? "`(None)`" : answer;
     }
+
+//    public static String solution(String m, String[] musicinfos) {
+//        String answer = "";
+//        SimpleDateFormat transFormat = new SimpleDateFormat("HH:mm");
+//
+//        // 정렬
+//        Arrays.sort(musicinfos, new Comparator<String>() {
+//            @Override
+//            public int compare(String o1, String o2) {
+//                String[] arrO1 = o1.split(",");
+//                String[] arrO2 = o2.split(",");
+//
+////                int timeO1 = Integer.valueOf(arrO1[1].replaceAll(":", ""))
+////                        - Integer.valueOf(arrO1[0].replaceAll(":", ""));
+////                int timeO2 = Integer.valueOf(arrO2[1].replaceAll(":", ""))
+////                        - Integer.valueOf(arrO2[0].replaceAll(":", ""));
+//
+//                Date timeO1 = new Date();
+//                Date timeO2 = new Date();
+//                try {
+//                    timeO1 = transFormat.parse(arrO1[1]);
+//                    timeO2 = transFormat.parse(arrO2[1]);
+//                } catch (ParseException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                return timeO2.compareTo(timeO1);
+//            }
+//        });
+//
+//        // 치환
+//        m = replaceAll(m);
+//        for (int i = 0; i < musicinfos.length; i++) {
+//            musicinfos[i] = replaceAll(musicinfos[i]);
+//            String[] temp = musicinfos[i].split(",");
+//            int timeO1 = Integer.valueOf(temp[1].replaceAll(":", ""))
+//                    - Integer.valueOf(temp[0].replaceAll(":", ""));
+//            StringBuilder songs = new StringBuilder();
+//            for (int j = 0; j < timeO1 / temp[3].length(); j++) {
+//                songs.append(temp[3]);
+//            }
+//
+//            songs.append(temp[3].substring(0, timeO1 % temp[3].length()));
+//            if (songs.toString().contains(m)) {
+//                answer = temp[2];
+//                break;
+//            }
+//        }
+//
+//        return answer;
+//    }
+//
+//    private static String replaceAll(String str) {
+//        return str.replaceAll("C#", "1")
+//                .replaceAll("D#", "2")
+//                .replaceAll("F#", "3")
+//                .replaceAll("G#", "4")
+//                .replaceAll("A#", "5");
+//    }
 }
