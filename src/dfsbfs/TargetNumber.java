@@ -46,6 +46,14 @@ public class TargetNumber {
         return cnt;
     }
 
+    /**
+     * 조합
+     * @param nums
+     * @param r
+     * @param start
+     * @param visit
+     * @param target
+     */
     private static void combination(int[] nums, int r, int start, boolean[] visit, int target) {
         if (r == 0) {
             int sum = 0;

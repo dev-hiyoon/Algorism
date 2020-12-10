@@ -55,6 +55,14 @@ public class TakePicture {
         return answer;
     }
 
+    /**
+     * 순열
+     * @param currentDepth
+     * @param members
+     * @param temp
+     * @param visited
+     * @param data
+     */
     private static void permutation(int currentDepth, String[] members, String[] temp, boolean[] visited, String[] data) {
         if (currentDepth == temp.length) {
             String value = Arrays.toString(temp).replaceAll("\\[|\\]|,|\\s", "");

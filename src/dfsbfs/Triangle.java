@@ -1,9 +1,8 @@
-package test;
+package dfsbfs;
 
 import java.util.Arrays;
-import java.util.HashSet;
 
-public class Test {
+public class Triangle {
 
     public static void main(String[] args) {
 
