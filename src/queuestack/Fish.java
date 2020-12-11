@@ -1,8 +1,8 @@
-package test;
+package queuestack;
 
 import java.util.Stack;
 
-public class Test {
+public class Fish {
 
     public static void main(String[] args) {
 

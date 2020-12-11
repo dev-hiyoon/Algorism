@@ -1,4 +1,4 @@
-package queue;
+package queuestack;
 
 import java.util.Arrays;
 import java.util.LinkedList;
