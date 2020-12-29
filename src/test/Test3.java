@@ -28,28 +28,35 @@ public class Test3 {
          * 4	11
          */
 
-        String result = solution(5);
-        System.out.println(result);
+        for (int i = 1; i < 10; i++) {
+            String result = solution(i);
+            System.out.println(result);
+        }
     }
 
     public static String solution(int n) {
+        String[] arr = {"4", "1", "2"};
         String answer = "";
         StringBuilder sb = new StringBuilder();
+        boolean isMinus = false;
+        if (n % 3 == 0) {
+            isMinus = true;
+        }
+
         while (true) {
-            sb.insert(0, n % 3);
-            if (n % 3 == 0) {
+            if (!isMinus) {
+                sb.insert(0, arr[n % 3]);
+            } else {
 
             }
 
-            if (1 == 1) {
+            n /= 3;
+            if (n < 1) {
                 break;
             }
         }
 
-
-
-
-        return answer;
+        return sb.toString();
     }
 }
 
