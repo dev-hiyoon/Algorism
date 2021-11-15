@@ -1,41 +1,62 @@
 package test;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 public class Test4 {
 
     public static void main(String[] args) {
-        int[][] datas = {{1, 4}, {2, 5}, {7, 8}, {9, 10}};
-        List<int[]> results = new ArrayList<>();
+        int[] results = solution(26, new int[]{1, 4, 16}, new int[]{26, 10, 20});
+        System.out.println(results);
+        Arrays.stream(results).forEach(x -> System.out.println(x));
+    }
 
-        // sort
-        Arrays.sort(datas, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                return o1[0] - o2[0];
-            }
-        });
-
-        // combine
-        int minIdx = datas[0][0];
-        int maxIdx = datas[0][1];
-        for (int i = 1; i < datas.length; i++) {
-            if (minIdx <= datas[i][0] && maxIdx >= datas[i][0]) {
-                maxIdx = datas[i][1];
-            } else {
-                results.add(new int[]{minIdx, maxIdx});
-                minIdx = datas[i][0];
-                maxIdx = datas[i][1];
+    public static int[] solution(int N, int[] P, int[] Q) {
+        // write your code in Java SE 8
+        Set<Integer> primeNumbers = new LinkedHashSet<>();
+        primeNumbers.add(2);
+        primeNumbers.add(3);
+        for (int i = 4; i <= N; i++) {
+            boolean isPrime = true;
+            for (int j = 2; j <= Math.sqrt(i); j++) {
+                if (i != j && i % j == 0) {
+                    isPrime = false;
+                    break;
+                }
             }
 
-            if (i == datas.length - 1) {
-                results.add(new int[]{minIdx, maxIdx});
+            if (isPrime) {
+                primeNumbers.add(i);
             }
         }
 
-        results.stream().forEach(x -> System.out.println("idx0: " + x[0] + ", idx1: " + x[1]));
+        int[] arrNumber = new int[N];
+        for (int i = 3; i < N; i++) {
+            boolean isPrime = true;
+            for (int j = 1; j <= Math.sqrt(N); j++) {
+                if (i % j == 0 && !primeNumbers.contains(j)) {
+                    isPrime = false;
+                    break;
+                }
+            }
+
+            arrNumber[i] = isPrime ? 1 : 0;
+        }
+
+        int[] results = new int[P.length];
+        for (int i = 0; i < P.length; i++) {
+            int cnt = 0;
+            for (int j = P[i]; j <= Q[i]; j++) {
+                if (arrNumber[j - 1] > 0) {
+                    cnt++;
+                }
+            }
+
+            results[i] = cnt;
+        }
+
+        return results;
+
     }
 }
