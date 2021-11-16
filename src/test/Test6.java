@@ -31,7 +31,7 @@ public class Test6 {
                 LocalDate modifyDate = LocalDate.parse(arrLine.get(0), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                 if (modifyDate.isBefore(searchDate)) {
                     if (Long.valueOf(arrLine.get(1)) < 240 * 1024) {
-                        System.out.println("EEEEEEEEEE");
+                        System.out.println("############## " + line);
                         result++;
                     }
                 }
