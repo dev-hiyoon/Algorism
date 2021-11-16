@@ -1,6 +1,6 @@
 package test;
 
-public class test8 {
+public class Test8 {
 
     class Node {
         public int value;
@@ -13,7 +13,7 @@ public class test8 {
     }
 
     public static void main(String[] args) {
-        test8 t = new test8();
+        Test8 t = new Test8();
         System.out.println("################ " + t.check(new int[]{1, 3, 2, 4}, new int[]{4, 1, 3, 2}));
         System.out.println("################ " + t.check(new int[]{1, 2, 3, 4}, new int[]{2, 1, 4, 3}));
         System.out.println("################ " + t.check(new int[]{1, 2, 2, 3, 3}, new int[]{2, 3, 3, 4, 5}));

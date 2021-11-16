@@ -6,7 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class test6 {
+public class Test6 {
     public static void main(String[] args) {
         System.out.println("###################### result: " + getStr("\"\"\"\n" +
                 "1988-08-29          956             system.zip\n" +

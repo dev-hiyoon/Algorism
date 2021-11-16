@@ -1,6 +1,6 @@
 package test;
 
-public class test7 {
+public class Test7 {
     public static void main(String[] args) {
         System.out.println("###################### result: " + getLongestLength(new int[]{3, 2, 3, 2, 3}));
         System.out.println("###################### result: " + getLongestLength(new int[]{7, 4, -2, 4, -2, -9}));
