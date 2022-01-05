@@ -7,8 +7,8 @@ public class Test5 {
 
     public static void main(String[] args) {
         Test5 t = new Test5();
-        for (int i = 0; i < 10000; i++) {
-            System.out.println("######### " + t.getInteger(i));
+        for (int i = 99999980; i <= 100000005; i++) {
+            System.out.println("######### i: " + i + ", sorted: " + t.getInteger(i));
         }
     }
 
