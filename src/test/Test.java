@@ -10,6 +10,7 @@ public class Test {
         String a = "a";
         String b = "b";
         String c = "c";
+        String d = "d";
         /**
          * 선행 스킬이란 어떤 스킬을 배우기 전에 먼저 배워야 하는 스킬을 뜻합니다.
          *
